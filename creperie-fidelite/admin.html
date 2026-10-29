@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tableau de bord – Crêperie</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&display=swap">
+<link rel="stylesheet" href="css/style.css"></head><body>
+<header><h1>Tableau de bord</h1><p>Vos clients sur les 30 derniers jours.</p></header>
+<main>
+<section class="box">
+  <label for="pw">Mot de passe</label><input id="pw" type="password">
+  <button id="load">Afficher les statistiques</button><p class="msg err" id="err"></p>
+</section>
+<section class="box" id="stats" hidden>
+  <div class="kpi">
+    <div><b id="k1"></b>clients inscrits</div><div><b id="k2"></b>nouveaux</div>
+    <div><b id="k3"></b>clients actifs</div><div><b id="k4"></b>visites</div>
+  </div>
+</section>
+<section class="box" id="b1" hidden><h2>Anniversaires du jour</h2><ul id="anniv"></ul></section>
+<section class="box" id="b2" hidden><h2>Clients à relancer (30 jours sans visite)</h2><ul id="inactifs"></ul></section>
+</main><script src="js/admin.js"></script></body></html>
