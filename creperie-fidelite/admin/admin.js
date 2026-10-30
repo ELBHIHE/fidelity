@@ -85,7 +85,7 @@ $('#copier').onclick = async () => {
 };
 
 async function charger() {
-  $('#err').textContent = '';
+  $('#err').textContent = ''; $('#load').disabled = true;
   try {
     const h = { 'x-admin': pw };
     const [a, b] = await Promise.all([fetch('/api/stats', { headers: h }), fetch('/api/clients', { headers: h })]);
@@ -93,12 +93,13 @@ async function charger() {
     if (!a.ok) throw new Error(s.error); if (!b.ok) throw new Error(c.error);
     sessionStorage.setItem('admin', pw);
     clients = c.clients; requis = c.requis;
-    $('#login').hidden = true; $('#dash').hidden = false; $('#side').hidden = false;
+    $('#login').hidden = true; $('.app').hidden = false; $('#dash').hidden = false; $('#side').hidden = false;
     $('#texte').value = $('#texte').value || MODELES.nouveaute;
     rendreApercu(s); rendreClients(); rendreDest();
-  } catch (e) { sessionStorage.removeItem('admin'); $('#err').textContent = e.message; }
+  } catch (e) { sessionStorage.removeItem('admin'); $('#err').textContent = e.message === 'Code incorrect' ? 'Mot de passe incorrect.' : e.message; }
+  finally { $('#load').disabled = false; }
 }
-$('#load').onclick = () => { pw = $('#pw').value; charger(); };
-$('#pw').onkeydown = e => { if (e.key === 'Enter') $('#load').click(); };
+$('#f').onsubmit = e => { e.preventDefault(); pw = $('#pw').value; charger(); };
+$('#voir').onclick = () => { const p = $('#pw'), v = p.type === 'password'; p.type = v ? 'text' : 'password'; $('#voir').textContent = v ? 'Masquer' : 'Afficher'; };
 $('#out').onclick = () => { sessionStorage.removeItem('admin'); location.reload(); };
 if (pw) charger();
