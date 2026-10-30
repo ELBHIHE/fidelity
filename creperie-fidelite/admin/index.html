@@ -1,22 +1,68 @@
 <!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="robots" content="noindex">
 <meta name="viewport" content="width=device-width,initial-scale=1"><title>Tableau de bord</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=DM+Sans:wght@400;600;700&display=swap"><link rel="stylesheet" href="/assets/base.css"><link rel="stylesheet" href="/admin/admin.css"></head><body>
-<div class="bar"><div class="logo"><i></i>Tableau de bord</div><button class="btn ghost" id="out" hidden>Se déconnecter</button></div>
-<main class="page">
+<div class="app">
+<aside class="side" id="side" hidden>
+  <div class="logo"><i></i>La Crêperie</div>
+  <nav class="nav">
+    <button class="on" data-tab="apercu">Aperçu</button>
+    <button data-tab="clients">Clients</button>
+    <button data-tab="messages">Messages</button>
+  </nav>
+  <button class="out" id="out">Se déconnecter</button>
+</aside>
+<main class="main">
 <section class="card login" id="login">
   <h2>Connexion</h2><label for="pw">Mot de passe</label><input id="pw" type="password">
   <button class="btn" id="load">Se connecter</button><p class="msg err" id="err"></p>
 </section>
 <div id="dash" hidden>
+<section class="panel" id="tab-apercu">
+  <h1>Aperçu</h1><p class="sous">Activité des 30 derniers jours.</p>
   <div class="kpis">
     <div class="card"><b id="k1"></b><span>clients inscrits</span></div>
-    <div class="card"><b id="k2"></b><span>nouveaux (30 jours)</span></div>
-    <div class="card"><b id="k3"></b><span>clients actifs (30 jours)</span></div>
-    <div class="card"><b id="k4"></b><span>visites (30 jours)</span></div>
+    <div class="card"><b id="k2"></b><span>nouveaux clients</span></div>
+    <div class="card"><b id="k3"></b><span>clients actifs</span></div>
+    <div class="card"><b id="k4"></b><span>visites</span></div>
+    <div class="card"><b id="k5"></b><span>crêpes offertes à donner</span></div>
   </div>
   <div class="cols">
     <section class="card"><h2>Anniversaires du jour</h2><ul id="anniv"></ul></section>
     <section class="card"><h2>Clients à relancer</h2><p class="vide">Sans visite depuis 30 jours.</p><ul id="inactifs"></ul></section>
   </div>
+</section>
+<section class="panel" id="tab-clients" hidden>
+  <h1>Clients</h1><p class="sous" id="nb"></p>
+  <div class="card">
+    <div class="toolbar">
+      <input id="q" type="search" placeholder="Rechercher un prénom ou un numéro" aria-label="Rechercher">
+      <select id="filtre" aria-label="Filtrer">
+        <option value="tous">Tous les clients</option><option value="offres">Acceptent les offres</option>
+        <option value="recompense">Crêpe offerte à donner</option><option value="inactifs">Sans visite depuis 30 jours</option>
+      </select>
+    </div>
+    <div class="tw"><table><thead><tr><th>Client</th><th>Contact</th><th>Tampons</th><th>Récompense</th><th>Dernière visite</th><th>Offres</th><th></th></tr></thead>
+    <tbody id="lignes"></tbody></table></div>
+  </div>
+</section>
+<section class="panel" id="tab-messages" hidden>
+  <h1>Messages WhatsApp</h1><p class="sous">Annoncez une nouveauté ou une promotion à vos clients.</p>
+  <div class="cols">
+    <div class="card">
+      <label for="aud">Destinataires</label>
+      <select id="aud"><option value="offres">Tous les clients qui acceptent les offres</option>
+        <option value="actifs">Clients actifs (visite dans les 30 jours)</option><option value="inactifs">Clients à relancer (30 jours sans visite)</option></select>
+      <label>Modèles</label>
+      <div class="modeles"><button type="button" data-m="nouveaute">Nouveauté</button><button type="button" data-m="promo">Promotion</button><button type="button" data-m="info">Information</button></div>
+      <label for="texte">Message (<code>{prenom}</code> sera remplacé par le prénom)</label>
+      <textarea id="texte" rows="5"></textarea>
+      <label>Aperçu</label><div class="bulle" id="apercu"></div>
+      <p class="msg err" id="merr"></p>
+      <button class="btn sec" id="copier">Copier le message</button>
+      <p class="note">WhatsApp n’autorise pas l’envoi groupé automatique sans son API Business : chaque bouton ouvre la conversation avec le message prêt, il reste un clic à faire. Seuls les clients ayant accepté les offres sont listés.</p>
+    </div>
+    <div class="card"><h2>Envoi</h2><p class="vide" id="prog"></p><ul class="scroll" id="dest"></ul></div>
+  </div>
+</section>
 </div>
-</main><script src="/admin/admin.js"></script></body></html>
+</main></div><script src="/admin/admin.js"></script></body></html>
