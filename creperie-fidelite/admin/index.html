@@ -1,0 +1,22 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>Tableau de bord</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=DM+Sans:wght@400;600;700&display=swap"><link rel="stylesheet" href="/assets/base.css"><link rel="stylesheet" href="/admin/admin.css"></head><body>
+<div class="bar"><div class="logo"><i></i>Tableau de bord</div><button class="btn ghost" id="out" hidden>Se déconnecter</button></div>
+<main class="page">
+<section class="card login" id="login">
+  <h2>Connexion</h2><label for="pw">Mot de passe</label><input id="pw" type="password">
+  <button class="btn" id="load">Se connecter</button><p class="msg err" id="err"></p>
+</section>
+<div id="dash" hidden>
+  <div class="kpis">
+    <div class="card"><b id="k1"></b><span>clients inscrits</span></div>
+    <div class="card"><b id="k2"></b><span>nouveaux (30 jours)</span></div>
+    <div class="card"><b id="k3"></b><span>clients actifs (30 jours)</span></div>
+    <div class="card"><b id="k4"></b><span>visites (30 jours)</span></div>
+  </div>
+  <div class="cols">
+    <section class="card"><h2>Anniversaires du jour</h2><ul id="anniv"></ul></section>
+    <section class="card"><h2>Clients à relancer</h2><p class="vide">Sans visite depuis 30 jours.</p><ul id="inactifs"></ul></section>
+  </div>
+</div>
+</main><script src="/admin/admin.js"></script></body></html>
