@@ -1,0 +1,23 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>Caisse</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap"><link rel="stylesheet" href="/assets/tailwind.css"></head><body class="min-h-screen">
+<header class="border-b border-line bg-white"><div class="mx-auto flex max-w-xl items-center justify-between px-5 py-3">
+  <span class="text-[15px] font-semibold tracking-tight">Caisse</span><button class="btn btn-secondary btn-sm" id="verrou">Verrouiller</button></div></header>
+<main class="mx-auto max-w-xl px-5 py-8">
+<section id="lock" class="box p-6">
+  <h1 class="text-xl font-semibold tracking-tight">Code caissier</h1>
+  <label class="label" for="pin">Saisissez le code pour ouvrir la caisse</label><input id="pin" type="password" inputmode="numeric" autocomplete="off" class="field">
+  <button class="btn" id="ouvrir">Ouvrir la caisse</button><p class="msg err" id="perr" role="alert"></p>
+</section>
+<section id="work" hidden class="space-y-4">
+  <div class="box p-6">
+    <button id="scan" class="btn btn-dark mt-0 py-3.5 text-base">Scanner la carte du client</button>
+    <div id="cam" hidden class="mt-4"><video id="video" playsinline muted class="aspect-video w-full rounded-lg bg-black object-cover"></video><button class="btn btn-secondary" id="stopscan">Annuler</button></div>
+    <div class="my-5 flex items-center gap-3 text-sm text-mute"><span class="h-px flex-1 bg-line"></span>ou saisir le numéro<span class="h-px flex-1 bg-line"></span></div>
+    <label class="label mt-0" for="tel">Téléphone du client</label><input id="tel" type="tel" class="field text-xl tracking-wide" placeholder="06 12 34 56 78">
+    <div class="mt-4 grid grid-cols-2 gap-3"><button class="btn mt-0 py-3.5" id="tampon">Ajouter un tampon</button><button class="btn btn-dark mt-0 py-3.5" id="reward">Valider la crêpe offerte</button></div>
+    <p class="msg" id="msg" role="status"></p>
+  </div>
+  <div id="res" hidden class="box p-6"><p id="nom" class="text-lg font-semibold"></p><div id="dots" class="mt-3 flex flex-wrap gap-1.5"></div><p id="score" class="mt-3 text-sm text-mute"></p></div>
+</section>
+</main><script src="/assets/jsQR.js"></script><script src="/caisse/caisse.js"></script></body></html>

@@ -1,0 +1,43 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>Ma carte de fidélité</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap"><link rel="stylesheet" href="/assets/tailwind.css"></head><body class="min-h-screen">
+<header class="border-b border-line bg-white"><div class="mx-auto max-w-md px-5 py-4 text-[15px] font-semibold tracking-tight">La Crêperie</div></header>
+<main class="mx-auto max-w-md px-5 py-8">
+<section id="form">
+  <h1 class="text-2xl font-semibold tracking-tight">Créez votre carte de fidélité</h1>
+  <p class="mt-2 text-sm text-mute">Cumulez un tampon à chaque commande et gagnez une crêpe offerte.</p>
+  <div class="box mt-6 p-5">
+    <label class="label mt-0" for="prenom">Prénom</label><input id="prenom" class="field" autocomplete="given-name">
+    <label class="label" for="tel">Numéro de téléphone</label><input id="tel" type="tel" class="field" autocomplete="tel" placeholder="06 12 34 56 78">
+    <label class="label" for="naiss">Date de naissance <span class="font-normal text-mute">(facultatif)</span></label><input id="naiss" type="date" class="field">
+    <label class="mt-4 flex items-start gap-2.5 text-sm"><input type="checkbox" id="consent" class="mt-0.5 h-4 w-4 accent-brand">J’accepte de recevoir des offres par WhatsApp.</label>
+    <button class="btn mt-5" id="go">Créer ma carte</button><p class="msg err" id="err" role="alert"></p>
+  </div>
+  <p class="mt-4 text-xs leading-5 text-mute">Votre numéro sert uniquement à retrouver votre carte et à vous envoyer des offres si vous l’acceptez.</p>
+</section>
+<section id="carte" hidden>
+  <div class="rounded-2xl bg-navy p-6 text-white">
+    <p class="text-sm text-white/60">Carte de fidélité</p>
+    <h2 id="nom" class="mt-1 text-xl font-semibold"></h2>
+    <p id="rec" class="mt-1 text-sm text-white/70"></p>
+    <div id="stamps" class="mt-6"></div>
+    <div id="cadeau" hidden class="mt-5 rounded-lg bg-amber-100 px-4 py-3 text-sm font-medium text-amber-900"></div>
+  </div>
+  <div class="box mt-4 p-5 text-center">
+    <div id="qr" class="mx-auto w-44"></div>
+    <p class="mt-3 text-sm text-mute">Présentez ce code à la caisse pour recevoir votre tampon.</p>
+  </div>
+  <div class="box mt-4 p-5">
+    <h3 class="text-sm font-semibold">Parrainez un ami</h3>
+    <p class="mt-1 text-sm text-mute">Quand votre ami passe sa première commande avec votre lien, vous gagnez un tampon.</p>
+    <input id="lien" readonly class="field mt-3 text-sm" aria-label="Votre lien de parrainage">
+    <div class="mt-3 flex gap-3"><button class="btn btn-secondary mt-0" id="copier">Copier le lien</button><a id="partage" target="_blank" rel="noopener" class="btn mt-0">Partager sur WhatsApp</a></div>
+  </div>
+  <div id="avis" hidden class="box mt-4 p-5">
+    <h3 class="text-sm font-semibold">Votre avis compte</h3>
+    <p class="mt-1 text-sm text-mute">Il aide d’autres clients à nous trouver. Vous restez libre de dire ce que vous pensez.</p>
+    <a id="avisLien" target="_blank" rel="noopener" class="btn btn-secondary">Laisser un avis Google</a>
+  </div>
+  <div class="mt-4 flex gap-3"><button class="btn btn-secondary mt-0" id="maj">Actualiser</button><button class="btn btn-secondary mt-0" id="change">Ce n’est pas ma carte</button></div>
+</section>
+</main><script src="/assets/qrcode.js"></script><script src="/client/client.js"></script></body></html>
